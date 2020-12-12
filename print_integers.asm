@@ -27,34 +27,34 @@ _printRAXLoop:
 	div rbx
        
 	push rax      ; --> saving rax
-  add rdx, 48   ; --> rdx contains the last digit(remainder) from the division
+        add rdx, 48   ; --> rdx contains the last digit(remainder) from the division
                       ; adding 48 to convert to character.
-  mov rcx, [digitSpacePos]
-  mov [rcx], dl ; --> the lowest 8 bits from rdx which is the character 
-  inc rcx
-  mov [digitSpacePos], rcx
+        mov rcx, [digitSpacePos]
+        mov [rcx], dl ; --> the lowest 8 bits from rdx which is the character 
+        inc rcx
+        mov [digitSpacePos], rcx
 
-  pop rax
-  cmp rax, 0   ; go to Explanation 2
-  jne _printRAXLoop
+        pop rax
+        cmp rax, 0   ; go to Explanation 2
+        jne _printRAXLoop
 
 _printRAXLoop2:
-  mov rcx, [digitSpacePos]
+        mov rcx, [digitSpacePos]
 
-  mov rax, 1
-  mov rdi, 1
-  mov rsi, rcx
-  mov rdx, 1
-  syscall
-  
-  mov rcx, [digitSpacePos]
-  dec rcx
-  mov [digitSpacePos], rcx
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, rcx
+        mov rdx, 1
+        syscall
+    
+        mov rcx, [digitSpacePos]
+        dec rcx
+        mov [digitSpacePos], rcx
 
-  cmp rcx, digitSpace
-  jge _printRAXLoop2
+        cmp rcx, digitSpace
+        jge _printRAXLoop2
 
-  ret 
+        ret 
 
 
 ; Explanation 1:
